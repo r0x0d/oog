@@ -1,4 +1,5 @@
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/r0x0d/oog/main.svg)](https://results.pre-commit.ci/latest/github/r0x0d/oog/main)
+[![Tests](https://github.com/r0x0d/oog/actions/workflows/tests.yml/badge.svg)](https://github.com/r0x0d/oog/actions/workflows/tests.yml)
 
 # OOG
 
