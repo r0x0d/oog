@@ -1,4 +1,4 @@
-from oog.main import main
+from oogg.main import main
 
 if __name__ == "__main__":
     main()
