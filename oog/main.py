@@ -32,7 +32,7 @@ def get_current_user() -> str:
     return re.split(":|/", out.stdout.strip().decode("utf-8"))[-2]
 
 
-def create_parser() -> argparse.Namespace:
+def create_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--path",
@@ -66,11 +66,11 @@ def create_parser() -> argparse.Namespace:
         default=False,
     )
 
-    return parser.parse_args()
+    return parser
 
 
 def main() -> int:
-    args = create_parser()
+    args = create_parser().parse_args()
 
     url = GITHUB_URL if not args.gitlab else GITLAB_URL
     url = url.format(
@@ -79,9 +79,13 @@ def main() -> int:
         branch=args.branch,
         file=args.path,
     )
-    if args.line:
-        url += f"#L{args.line}"
 
-    subprocess.run(("xdg-open", url))
+    url += f"#L{args.line}" if args.line else ""
 
-    return 0
+    out = subprocess.run(
+        ("xdg-open", url),
+        stderr=subprocess.DEVNULL,
+        stdout=subprocess.DEVNULL,
+    )
+    print("Opened your file in your prefered browser.")
+    return out.returncode
