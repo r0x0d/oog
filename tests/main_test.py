@@ -3,7 +3,7 @@ from unittest import mock
 
 import pytest
 
-from oog import main
+from oogg import main
 
 
 @pytest.mark.parametrize(
@@ -55,7 +55,7 @@ def test_create_parser(argparse_mock):
     ("input_data", "expected"),
     ((0, 0),),
 )
-@mock.patch("oog.main.create_parser")
+@mock.patch("oogg.main.create_parser")
 @mock.patch("subprocess.run")
 def test_main(subprocess_mock, create_parser_mock, input_data, expected):
     create_parser_mock.return_value = namedtuple(
