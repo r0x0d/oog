@@ -1,7 +1,7 @@
 name: Tests
 
-on: 
-  push: 
+on:
+  push:
     branches: [main]
   pull_request:
 
@@ -22,7 +22,7 @@ jobs:
           - { name: Linux, distro: ubuntu-latest, pip_cache_path: ~/.cache/pip }
           - { name: Windows, distro: windows-latest, pip_cache_path: ~\AppData\Local\pip\Cache }
           - { name: macOS, distro: macOS-latest, pip_cache_path: ~/Library/Caches/pip }
-        python: 
+        python:
           - { version: 3.7, tox: py37 }
           - { version: 3.8, tox: py38 }
           - { version: 3.9, tox: py39 }
@@ -53,13 +53,13 @@ jobs:
         if: matrix.platform.name == 'Linux'
         run: |
           echo "Nothing now."
-      
+
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python.version }} # Version range or exact version of a Python version to use, using SemVer's version range syntax
           architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specifiedi
-      
-      - name: Install tox 
+
+      - name: Install tox
         run: |
           pip install tox
 

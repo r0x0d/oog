@@ -1,26 +1,76 @@
-import argparse
+from collections import namedtuple
 from unittest import mock
+
+import pytest
 
 from oog import main
 
 
-def test_get_current_branch():
-    assert main.get_current_branch() == "main"
+@pytest.mark.parametrize(
+    ("input_data", "expected"),
+    (
+        (b"test\n", "test"),
+        (b"test", "test"),
+    ),
+)
+@mock.patch("subprocess.run")
+def test_get_current_branch(subprocess_mock, input_data, expected):
+    subprocess_mock.return_value = namedtuple("subprocess", ["stdout"])(
+        input_data,
+    )
+    assert main.get_current_branch() == expected
 
 
-def test_get_current_repository():
-    assert main.get_current_repository() == "oog"
+@pytest.mark.parametrize(
+    ("input_data", "expected"),
+    ((b"git@github.com:test/test.git\n", "test"),),
+)
+@mock.patch("subprocess.run")
+def test_get_current_repository(subprocess_mock, input_data, expected):
+    subprocess_mock.return_value = namedtuple("subprocess", ["stdout"])(
+        input_data,
+    )
+    assert main.get_current_repository() == expected
 
 
-def test_get_current_user():
-    assert main.get_current_user() == "r0x0d"
+@pytest.mark.parametrize(
+    ("input_data", "expected"),
+    ((b"git@github.com:test/test.git\n", "test"),),
+)
+@mock.patch("subprocess.run")
+def test_get_current_user(subprocess_mock, input_data, expected):
+    subprocess_mock.return_value = namedtuple("subprocess", ["stdout"])(
+        input_data,
+    )
+    assert main.get_current_user() == "test"
 
 
-def test_create_parser():
-    assert isinstance(main.create_parser(), argparse.ArgumentParser)
+@mock.patch("argparse.ArgumentParser")
+def test_create_parser(argparse_mock):
+    main.create_parser()
+    assert argparse_mock.called_once()
 
 
+@pytest.mark.parametrize(
+    ("input_data", "expected"),
+    ((0, 0),),
+)
 @mock.patch("oog.main.create_parser")
 @mock.patch("subprocess.run")
-def test_main(create_parser_mock, subprocess_mock):
-    assert main.main() == 0
+def test_main(subprocess_mock, create_parser_mock, input_data, expected):
+    create_parser_mock.return_value = namedtuple(
+        "parser",
+        ["gitlab", "user", "repository", "branch", "path", "line"],
+    )(
+        False,
+        "test",
+        "test",
+        "test",
+        "test",
+        0,
+    )
+
+    subprocess_mock.return_value = namedtuple("subprocess", ["returncode"])(
+        input_data,
+    )
+    assert main.main() == expected

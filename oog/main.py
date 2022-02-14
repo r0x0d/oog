@@ -32,7 +32,7 @@ def get_current_user() -> str:
     return re.split(":|/", out.stdout.strip().decode("utf-8"))[-2]
 
 
-def create_parser() -> argparse.ArgumentParser:
+def create_parser() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--path",
@@ -66,11 +66,11 @@ def create_parser() -> argparse.ArgumentParser:
         default=False,
     )
 
-    return parser
+    return parser.parse_args()
 
 
 def main() -> int:
-    args = create_parser().parse_args()
+    args = create_parser()
 
     url = GITHUB_URL if not args.gitlab else GITLAB_URL
     url = url.format(
