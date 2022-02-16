@@ -1,11 +1,11 @@
 import argparse
-import logging
+
+from rich import print
 
 from oogg.browser import open_with_browser
+from oogg.error import UnknowProvider
+from oogg.provider import format_provider_url
 from oogg.repository import repository
-
-logging.basicConfig(format="%(asctime)s %(message)s", level=logging.INFO)
-logger = logging.getLogger("main")
 
 
 def create_parser() -> argparse.Namespace:
@@ -53,4 +53,18 @@ def main() -> int:
     """
     args = create_parser()
 
-    return open_with_browser(args)
+    try:
+        url = format_provider_url(
+            platform=repository.platform,
+            host=args.host,
+            owner=args.owner,
+            repo=args.repository,
+            branch=args.branch,
+            file=args.filepath,
+        )
+    except (UnknowProvider):
+        print(
+            f"[red]Failed to parse the {repository.platform} provider.[/red]",
+        )
+        return 1
+    return open_with_browser(url=url)
