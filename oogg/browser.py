@@ -23,8 +23,7 @@ def open_with_browser(url: str) -> int:
     try:
         out = subprocess.run(
             (cmd, url),
-            stderr=subprocess.DEVNULL,
-            stdout=subprocess.DEVNULL,
+            capture_output=True,
         )
 
         print(
