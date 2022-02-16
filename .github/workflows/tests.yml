@@ -20,8 +20,6 @@ jobs:
       matrix:
         platform:
           - { name: Linux, distro: ubuntu-latest, pip_cache_path: ~/.cache/pip }
-          - { name: Windows, distro: windows-latest, pip_cache_path: ~\AppData\Local\pip\Cache }
-          - { name: macOS, distro: macOS-latest, pip_cache_path: ~/Library/Caches/pip }
         python:
           - { version: 3.7, tox: py37 }
           - { version: 3.8, tox: py38 }
@@ -38,21 +36,6 @@ jobs:
         with:
           path: ${{ matrix.platform.pip_cache_path }}
           key: pip-${{ matrix.platform.name }}-python-${{ matrix.python.version }}-${{ hashFiles('**/requirements/*.txt') }}
-
-      - name: Install Native Dependencies (macOS)
-        if: matrix.platform.name == 'macOS'
-        run: |
-          echo "Nothing now."
-
-      - name: Install Native Dependencies (Windows)
-        if: matrix.platform.name == 'Windows'
-        run: |
-          echo "Nothing now."
-
-      - name: Install Native Dependencies (Linux)
-        if: matrix.platform.name == 'Linux'
-        run: |
-          echo "Nothing now."
 
       - uses: actions/setup-python@v2
         with:
