@@ -27,10 +27,7 @@ def test_repository__get_remote_url(subprocess_run_mock, stdout, expected):
 
 @pytest.mark.parametrize(
     ("stdout", "expected"),
-    (
-        (b"test\n", "test"),
-        (b"test", "test"),
-    ),
+    ((b"test\n", "test"), (b"test", "test"), (b"", "")),
 )
 @mock.patch("subprocess.run")
 def test_repository__get_remote_branch(subprocess_run_mock, stdout, expected):

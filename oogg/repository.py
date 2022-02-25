@@ -49,7 +49,15 @@ class Repository:
             capture_output=True,
         )
 
-        return out.stdout.strip().decode("utf-8")
+        branch_name = out.stdout.strip().decode("utf-8")
+        if not branch_name:
+            out = subprocess.run(
+                ("git", "rev-parse", "HEAD"),
+                capture_output=True,
+            )
+
+            branch_name = out.stdout.strip().decode("utf-8")
+        return branch_name
 
     def parse(self) -> "Repository":
         """Parse the necessary values for this class
