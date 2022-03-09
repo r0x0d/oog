@@ -1,5 +1,8 @@
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/r0x0d/oogg/main.svg)](https://results.pre-commit.ci/latest/github/r0x0d/oogg/main)
-[![Tests](https://github.com/r0x0d/oogg/actions/workflows/tests.yml/badge.svg)](https://github.com/r0x0d/oogg/actions/workflows/tests.yml)
+[![Coverage](https://github.com/r0x0d/oogg/actions/workflows/coverage.yml/badge.svg)](https://github.com/r0x0d/oogg/actions/workflows/coverage.yml)
+[![codecov](https://codecov.io/gh/r0x0d/oogg/branch/main/graph/badge.svg?token=5APPY0PPK4)](https://codecov.io/gh/r0x0d/oogg)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/r0x0d/oogg.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/r0x0d/oogg/alerts/)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/r0x0d/oogg.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/r0x0d/oogg/context:python)
 
 # OOGG
 
