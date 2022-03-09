@@ -3,6 +3,7 @@
 [![codecov](https://codecov.io/gh/r0x0d/oogg/branch/main/graph/badge.svg?token=5APPY0PPK4)](https://codecov.io/gh/r0x0d/oogg)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/r0x0d/oogg.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/r0x0d/oogg/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/r0x0d/oogg.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/r0x0d/oogg/context:python)
+[![Code Scanning - Action](https://github.com/r0x0d/oogg/actions/workflows/codeql.yml/badge.svg)](https://github.com/r0x0d/oogg/actions/workflows/codeql.yml)
 
 # OOGG
 
